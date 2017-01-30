@@ -31,6 +31,14 @@ ifneq ($(GATOR_WITH_MALI_SUPPORT),)
   endif
 endif
 
+ifeq ($(CONFIG_MALI_GATOR_SUPPORT),y)
+  EXTRA_CFLAGS += -DCONFIG_MALI_GATOR_SUPPORT
+else
+  ifeq ($(CONFIG_MALI_GATOR_SUPPORT_TIMELINE),y)
+    EXTRA_CFLAGS += -DCONFIG_MALI_GATOR_SUPPORT
+  endif
+endif
+    
 ifeq ($(CONFIG_GATOR_WITH_MALI_SUPPORT),y)
   ifeq ($(CONFIG_GATOR_MALI_MIDGARD),y)
     gator-y +=	gator_events_mali_midgard.o \
